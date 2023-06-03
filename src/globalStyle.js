@@ -30,7 +30,7 @@ export const GlobalStyle = createGlobalStyle`
 
   // 共用變數
   :root {
-    --yellow-1: #FAD689;
+    --yellow-1: #FFEAAA;
     --blue-1: #A5DEE4;
     --blue-2: #7DB9DE;
     --gray-1: #BDC0BA;

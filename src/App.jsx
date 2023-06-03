@@ -16,7 +16,8 @@ const StyledDiv = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  div {
+  // 只更動下一子層的 div
+  > div {
     margin: 10px auto;
   }
 `;
