@@ -1,14 +1,18 @@
 import ForecastList from './components/ForecastList';
 import SearchBar from './components/SearchBar';
 import TodayPanel from './components/TodayPanel';
+import { GlobalStyle } from './globalStyle';
 
 function App() {
   return (
-    <div>
-      <SearchBar />
-      <TodayPanel />
-      <ForecastList />
-    </div>
+    <>
+      <GlobalStyle />
+      <div>
+        <SearchBar />
+        <TodayPanel />
+        <ForecastList />
+      </div>
+    </>
   );
 }
 
