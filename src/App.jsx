@@ -5,7 +5,7 @@ import TodayPanel from './components/TodayPanel';
 import { GlobalStyle } from './globalStyle';
 
 const StyledDiv = styled.div`
-  background-color: green; //TODO
+  /* background-color: green; //TODO */
   width: 100vw;
   max-width: 600px;
   height: 100vh;

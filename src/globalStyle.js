@@ -27,4 +27,12 @@ export const GlobalStyle = createGlobalStyle`
   p, h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;
   }
+
+  // 共用變數
+  :root {
+    --yellow-1: #FAD689;
+    --blue-1: #A5DEE4;
+    --blue-2: #7DB9DE;
+    --gray-1: #BDC0BA;
+  }
 `;
