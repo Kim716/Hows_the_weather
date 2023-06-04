@@ -3,14 +3,14 @@ import styled from 'styled-components';
 const StyledDiv = styled.div`
   background-color: var(--gray-1); //TODO
   width: 100%;
-  height: 40%;
+  flex-basis: 40%;
   border-radius: 5px;
   overflow: hidden;
 
   h2 {
     position: relative;
     top: -23px;
-    left: -5px;
+    left: -8px;
     color: white;
     font-size: 4rem;
     font-weight: 500;
@@ -51,7 +51,7 @@ const StyledDiv = styled.div`
 function TodayPanel() {
   return (
     <StyledDiv>
-      <h2>今日</h2>
+      <h2>台北市</h2>
       <div className="info">
         <div className="weather">陰</div>
         <div className="temp">

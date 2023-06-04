@@ -11,15 +11,17 @@ const StyledDiv = styled.div`
   height: 100vh;
   margin: 0 auto;
   padding: 20px;
+  overflow-y: scroll;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 20px;
 
-  // 只更動下一子層的 div
+  /* // 只更動下一子層的 div
   > div {
     margin: 10px auto;
-  }
+  } */
 `;
 
 function App() {
