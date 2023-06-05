@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { ReactComponent as SearchIcon } from '../assets/iconSearch.svg';
 import { useState } from 'react';
+import { getGeolocation } from '../api/geolocation';
 
 const StyledDiv = styled.div`
   width: 100%;
@@ -57,10 +58,10 @@ function SearchBar() {
     setSearchTerm(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(searchTerm);
-    setSearchTerm('');
+    const [data] = await getGeolocation({ searchTerm });
+    console.log(data);
   };
 
   return (
