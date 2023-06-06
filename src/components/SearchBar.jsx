@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { ReactComponent as SearchIcon } from '../assets/iconSearch.svg';
-import { useState } from 'react';
-import { getGeolocation } from '../api/geolocation';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeSearchTerm, getGeolocation } from '../store';
 
 const StyledDiv = styled.div`
   width: 100%;
@@ -52,16 +52,21 @@ const StyledDiv = styled.div`
 `;
 
 function SearchBar() {
-  const [searchTerm, setSearchTerm] = useState('');
+  // const [searchTerm, setSearchTerm] = useState('');
+  const dispatch = useDispatch();
+  const { searchTerm } = useSelector((state) => state.weather);
 
   const handleChange = (e) => {
-    setSearchTerm(e.target.value);
+    // setSearchTerm(e.target.value);
+    dispatch(changeSearchTerm(e.target.value));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const [data] = await getGeolocation({ searchTerm });
-    console.log(data);
+    dispatch(getGeolocation({ searchTerm }))
+      .unwrap()
+      .then((locations) => console.log(locations[0].name))
+      .catch((error) => console.error(error));
   };
 
   return (
