@@ -5,7 +5,6 @@ import TodayPanel from './components/TodayPanel';
 import { GlobalStyle } from './globalStyle';
 
 const StyledDiv = styled.div`
-  /* background-color: green; //TODO */
   width: 100vw;
   max-width: 600px;
   height: 100vh;
@@ -17,11 +16,6 @@ const StyledDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 20px;
-
-  /* // 只更動下一子層的 div
-  > div {
-    margin: 10px auto;
-  } */
 `;
 
 function App() {

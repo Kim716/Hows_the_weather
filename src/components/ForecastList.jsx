@@ -4,7 +4,8 @@ import styled from 'styled-components';
 
 const StyledDiv = styled.div`
   width: 100%;
-  flex-basis: 50%;
+  height: 50%;
+  max-height: 320px;
 
   table {
     width: 100%;

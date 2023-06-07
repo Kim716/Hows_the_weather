@@ -9,9 +9,9 @@ const StyledDiv = styled.div`
   position: relative;
   background-color: ${({ theme }) => theme.blue2};
   width: 100%;
-  flex-basis: 40%;
+  height: 40%;
+  max-height: 250px;
   border-radius: 5px;
-
   overflow: hidden;
 
   .loading {
@@ -41,6 +41,7 @@ const StyledDiv = styled.div`
   }
 
   .info {
+    margin-top: 40px;
     width: 100%;
     height: 50%;
     display: flex;
