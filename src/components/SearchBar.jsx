@@ -19,7 +19,7 @@ const StyledDiv = styled.div`
   .search-btn {
     aspect-ratio: 1/1;
     height: 100%;
-    background-color: var(--blue-1);
+    background-color: ${({ theme }) => theme.blue1};
     padding: 5px;
     border: 0;
     border-radius: 5px;
@@ -30,7 +30,7 @@ const StyledDiv = styled.div`
     cursor: pointer;
 
     &:hover {
-      background-color: var(--blue-2);
+      background-color: ${({ theme }) => theme.blue2};
     }
 
     &:disabled {

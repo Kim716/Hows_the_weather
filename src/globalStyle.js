@@ -1,12 +1,19 @@
+import { createTheme } from '@mui/material';
 import { createGlobalStyle, keyframes } from 'styled-components';
 
 const fadeIn = keyframes`
-from{opacity: 0}
+  from{opacity: 0}
   to {opacity: 1}
 `;
 
+export const theme = createTheme({
+  blue1: '#A5DEE4',
+  blue2: '#7DB9DE',
+  gray: '#BDC0BA',
+});
+
 export const GlobalStyle = createGlobalStyle`
-// css reset
+  // css reset
   *, *::before, *::after {
     box-sizing: border-box;
     font-family: 'Noto Sans', 'Noto Sans TC', sans-serif;
@@ -34,13 +41,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   // 共用變數
-  :root {
-    --blue-1: #A5DEE4;
-    --blue-2: #7DB9DE;
-    --gray-1: #BDC0BA;
-  }
-
-  .fulfilled {
+  .loading_fulfilled {
     animation: ${fadeIn} 0.5s linear;
   }
 `;

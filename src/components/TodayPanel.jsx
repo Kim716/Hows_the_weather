@@ -7,7 +7,7 @@ const shimmer = keyframes`
 
 const StyledDiv = styled.div`
   position: relative;
-  background-color: var(--blue-2);
+  background-color: ${({ theme }) => theme.blue2};
   width: 100%;
   flex-basis: 40%;
   border-radius: 5px;
@@ -17,7 +17,11 @@ const StyledDiv = styled.div`
   .loading {
     position: absolute;
     inset: 0px; // 讓 inner div 貼齊 outer div 邊
-    background-image: linear-gradient(to right, var(--blue-2), var(--blue-1));
+    background-image: linear-gradient(
+      to right,
+      ${({ theme }) => theme.blue2},
+      ${({ theme }) => theme.blue1}
+    );
     transform: translateX(-100%);
     animation: ${shimmer} 1s infinite;
   }
@@ -79,8 +83,8 @@ function TodayPanel() {
   } else {
     content = (
       <>
-        <h2 className="fulfilled">{current.fullName}</h2>
-        <div className="info fulfilled">
+        <h2 className="loading_fulfilled">{current.fullName}</h2>
+        <div className="info loading_fulfilled">
           <div className="weather">{current.weather}</div>
           <div className="temp">
             <p>Temp.</p>

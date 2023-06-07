@@ -60,7 +60,7 @@ function ForecastList() {
   } else {
     renderedRows = forecasts.map((el) => {
       return (
-        <tr key={el.dt} className="fulfilled">
+        <tr key={el.dt} className="loading_fulfilled">
           <td>{el.dt_txt?.split(' ')[0].split('-').slice(-2).join('/')}</td>
           <td>{el.weather[0].description}</td>
           <td>
