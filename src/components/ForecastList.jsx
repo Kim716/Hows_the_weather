@@ -1,4 +1,3 @@
-import { nanoid } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
@@ -32,30 +31,13 @@ function ForecastList() {
   const { isLoading, error, forecasts } = useSelector((state) => state.weather);
 
   let renderedRows;
-  if (isLoading) {
+  if (isLoading || error) {
     renderedRows = Array(5)
       .fill(0)
-      .map(() => {
+      .map((_, i) => {
+        // 確認此陣列在這份專案中不會有順序調換問題，所以使用 index 當作 key
         return (
-          <tr key={nanoid()}>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-          </tr>
-        );
-      });
-  } else if (error) {
-    renderedRows = Array(5)
-      .fill(0)
-      .map(() => {
-        return (
-          <tr key={nanoid()}>
-            <td>N/A</td>
-            <td>N/A</td>
-            <td>N/A</td>
-            <td>N/A</td>
-          </tr>
+          <tr key={i}>{Array(4).fill(<td>{isLoading ? '-' : 'N/A'}</td>)}</tr>
         );
       });
   } else {
