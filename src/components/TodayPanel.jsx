@@ -9,8 +9,8 @@ const StyledDiv = styled.div`
 
   h2 {
     position: relative;
-    top: -23px;
-    left: -8px;
+    top: -27px;
+    left: -3px;
     color: white;
     font-size: 4rem;
     font-weight: 500;
@@ -51,14 +51,14 @@ const StyledDiv = styled.div`
 function TodayPanel() {
   return (
     <StyledDiv>
-      <h2>台北市</h2>
+      <h2>Taipei,TW</h2>
       <div className="info">
-        <div className="weather">陰</div>
+        <div className="weather">Clouds</div>
         <div className="temp">
-          <p>氣溫</p>32°C
+          <p>Temp.</p>32°C
         </div>
         <div className="probability">
-          <p>降雨率</p>30%
+          <p>Humidity</p>30%
         </div>
       </div>
     </StyledDiv>

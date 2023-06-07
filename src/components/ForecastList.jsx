@@ -23,7 +23,7 @@ function ForecastList() {
     return (
       <tr key={el}>
         <td>3/29</td>
-        <td>陰</td>
+        <td>Clouds</td>
         <td>27/32</td>
         <td>20%</td>
       </tr>
@@ -35,10 +35,10 @@ function ForecastList() {
       <table>
         <thead>
           <tr>
-            <th>未來五天</th>
-            <th>天氣</th>
-            <th>最高/低氣溫</th>
-            <th>降雨率</th>
+            <th>Future</th>
+            <th>Weather</th>
+            <th>Max/Min Temp.</th>
+            <th>Humidity</th>
           </tr>
         </thead>
         <tbody>{renderedRows}</tbody>

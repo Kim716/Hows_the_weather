@@ -77,7 +77,11 @@ function SearchBar() {
   return (
     <StyledDiv>
       <form onSubmit={handleSubmit}>
-        <input value={searchTerm} onChange={handleChange} />
+        <input
+          value={searchTerm}
+          onChange={handleChange}
+          placeholder="city name,country"
+        />
         <button>
           <SearchIcon />
         </button>

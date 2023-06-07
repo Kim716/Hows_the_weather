@@ -38,11 +38,12 @@ const weatherSlice = createSlice({
     });
     builder.addCase(getCurrentWeather.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.current = {
-        description: action.payload.weather[0].description,
-        temp: action.payload.main.temp,
-        humidity: action.payload.main.humidity,
-      };
+      state.current = action.payload;
+      // state.current = {
+      //   description: action.payload.weather[0].description,
+      //   temp: action.payload.main.temp,
+      //   humidity: action.payload.main.humidity,
+      // };
     });
     builder.addCase(getCurrentWeather.rejected, (state, action) => {
       state.isLoading = false;
