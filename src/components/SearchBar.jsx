@@ -34,6 +34,7 @@ const StyledDiv = styled.div`
     }
 
     &:disabled {
+      background-color: ${({ theme }) => theme.blue2};
       cursor: not-allowed;
     }
   }
