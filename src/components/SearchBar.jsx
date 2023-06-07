@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 import { ReactComponent as SearchIcon } from '../assets/iconSearch.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeSearchTerm, getCurrentWeather, getGeolocation } from '../store';
+import {
+  changeSearchTerm,
+  getCurrentWeather,
+  getForecasts,
+  getGeolocation,
+} from '../store';
 import { useEffect } from 'react';
 
 const StyledDiv = styled.div`
@@ -54,7 +59,7 @@ const StyledDiv = styled.div`
 
 function SearchBar() {
   const dispatch = useDispatch();
-  const { searchTerm } = useSelector((state) => state.weather);
+  const { searchTerm, forecasts } = useSelector((state) => state.weather);
 
   const handleChange = (e) => {
     dispatch(changeSearchTerm(e.target.value));
@@ -65,6 +70,7 @@ function SearchBar() {
     try {
       const { payload } = await dispatch(getGeolocation(searchTerm));
       dispatch(getCurrentWeather(payload[0].name));
+      dispatch(getForecasts(payload[0].name));
     } catch (error) {
       console.error(error);
     }
@@ -72,8 +78,9 @@ function SearchBar() {
 
   useEffect(() => {
     // 初次進入 APP 先顯示台北的天氣
-    dispatch(getCurrentWeather('taipei'));
-  }, [dispatch]);
+    // dispatch(getCurrentWeather('taipei'));
+    console.log(forecasts);
+  }, [forecasts]);
 
   return (
     <StyledDiv>

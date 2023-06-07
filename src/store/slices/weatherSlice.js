@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getGeolocation } from '../thunks/getGeolocation';
 import { getCurrentWeather } from '../thunks/getCurrentWeather';
+import { getForecasts } from '../thunks/getForecasts';
 
 const weatherSlice = createSlice({
   name: 'weather',
@@ -10,7 +11,7 @@ const weatherSlice = createSlice({
     searchTerm: '',
     placeName: null,
     current: {},
-    forecast: [],
+    forecasts: [],
   },
   reducers: {
     changeSearchTerm(state, action) {
@@ -46,6 +47,21 @@ const weatherSlice = createSlice({
       };
     });
     builder.addCase(getCurrentWeather.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error;
+    });
+
+    // GET Forecasts
+    builder.addCase(getForecasts.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getForecasts.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.forecasts = action.payload.list.filter((el) =>
+        el.dt_txt.includes('06:00:00')
+      );
+    });
+    builder.addCase(getForecasts.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error;
     });
