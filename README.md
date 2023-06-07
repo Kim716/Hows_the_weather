@@ -2,7 +2,7 @@
 
 A weather application that you can check the current weather and the five-day weather forecast for a specific city.
 
-:arrow_right: [Demo](https://kim716.github.io/Hows_the_weather/)
+🕹 [Demo](https://kim716.github.io/Hows_the_weather/)
 
 ## 📸 Screenshot
 
