@@ -1,4 +1,9 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, keyframes } from 'styled-components';
+
+const fadeIn = keyframes`
+from{opacity: 0}
+  to {opacity: 1}
+`;
 
 export const GlobalStyle = createGlobalStyle`
 // css reset
@@ -34,5 +39,9 @@ export const GlobalStyle = createGlobalStyle`
     --blue-1: #A5DEE4;
     --blue-2: #7DB9DE;
     --gray-1: #BDC0BA;
+  }
+
+  .fulfilled {
+    animation: ${fadeIn} 0.5s linear;
   }
 `;

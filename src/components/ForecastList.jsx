@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const StyledDiv = styled.div`
   width: 100%;
+  flex-basis: 50%;
 
   table {
     width: 100%;
@@ -16,6 +17,12 @@ const StyledDiv = styled.div`
     td {
       padding: 15px 10px 10px;
       border-bottom: 0.5px solid lightgray;
+    }
+
+    tr:hover {
+      td {
+        background: #bdc0ba55;
+      }
     }
   }
 `;
@@ -53,7 +60,7 @@ function ForecastList() {
   } else {
     renderedRows = forecasts.map((el) => {
       return (
-        <tr key={el.dt}>
+        <tr key={el.dt} className="fulfilled">
           <td>{el.dt_txt?.split(' ')[0].split('-').slice(-2).join('/')}</td>
           <td>{el.weather[0].description}</td>
           <td>

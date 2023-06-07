@@ -11,6 +11,7 @@ const StyledDiv = styled.div`
   width: 100%;
   flex-basis: 40%;
   border-radius: 5px;
+
   overflow: hidden;
 
   .loading {
@@ -77,8 +78,8 @@ function TodayPanel() {
   } else {
     content = (
       <>
-        <h2>{current.fullName}</h2>
-        <div className="info">
+        <h2 className="fulfilled">{current.fullName}</h2>
+        <div className="info fulfilled">
           <div className="weather">{current.weather}</div>
           <div className="temp">
             <p>Temp.</p>
