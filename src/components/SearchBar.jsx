@@ -8,7 +8,7 @@ import {
   getForecasts,
   getGeolocation,
 } from '../store';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const StyledDiv = styled.div`
   width: 100%;
@@ -64,21 +64,21 @@ const StyledDiv = styled.div`
 
 function SearchBar() {
   const dispatch = useDispatch();
-  const { searchTerm, isLoading } = useSelector((state) => state.weather);
+  // const { searchTerm, isLoading } = useSelector((state) => state.weather);
+  const { isLoading } = useSelector((state) => state.weather);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleChange = (e) => {
-    dispatch(changeSearchTerm(e.target.value));
+    // dispatch(changeSearchTerm(e.target.value));
+    setSearchTerm(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const { payload } = await dispatch(getGeolocation(searchTerm));
-      dispatch(getCurrentWeather(payload[0].name));
-      dispatch(getForecasts(payload[0].name));
-    } catch (error) {
-      console.error(error);
-    }
+
+    dispatch(getCurrentWeather(searchTerm));
+    dispatch(getForecasts(searchTerm));
+    setSearchTerm('');
   };
 
   useEffect(() => {

@@ -24,6 +24,7 @@ const StyledDiv = styled.div`
 
   .error {
     color: white;
+    font-size: 1.5rem;
   }
 
   h2 {
@@ -31,7 +32,7 @@ const StyledDiv = styled.div`
     top: -27px;
     left: -3px;
     color: white;
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 500;
   }
 
@@ -74,7 +75,7 @@ function TodayPanel() {
   if (isLoading) {
     content = <div className="loading"></div>;
   } else if (error) {
-    content = <div className="error">error fetching data...</div>;
+    content = <div className="error">{error.message}</div>;
   } else {
     content = (
       <>

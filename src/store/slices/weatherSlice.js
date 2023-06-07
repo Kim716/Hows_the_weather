@@ -8,8 +8,8 @@ const weatherSlice = createSlice({
   initialState: {
     isLoading: false,
     error: null,
-    searchTerm: '',
-    placeName: null,
+    // searchTerm: '',
+    // placeName: null,
     current: {},
     forecasts: [],
   },
@@ -26,8 +26,8 @@ const weatherSlice = createSlice({
     });
     builder.addCase(getGeolocation.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.placeName = action.payload[0].name;
-      state.searchTerm = '';
+      // state.placeName = action.payload[0]?.name;
+      // state.searchTerm = '';
     });
     builder.addCase(getGeolocation.rejected, (state, action) => {
       state.isLoading = false;
@@ -47,6 +47,7 @@ const weatherSlice = createSlice({
         temp: Math.round(action.payload.main.temp),
         humidity: action.payload.main.humidity,
       };
+      // state.searchTerm = '';
     });
     builder.addCase(getCurrentWeather.rejected, (state, action) => {
       state.isLoading = false;
@@ -63,6 +64,7 @@ const weatherSlice = createSlice({
       state.forecasts = action.payload.list.filter((el) =>
         el.dt_txt.includes('06:00:00')
       );
+      // state.searchTerm = '';
     });
     builder.addCase(getForecasts.rejected, (state, action) => {
       state.isLoading = false;
