@@ -5,6 +5,7 @@ import svgr from 'vite-plugin-svgr';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [svgr(), react()],
+  base: '/Hows_the_weather/',
   resolve: {
     alias: {
       '@mui/styled-engine': '@mui/styled-engine-sc',
