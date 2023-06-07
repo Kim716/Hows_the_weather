@@ -7,7 +7,7 @@ const baseURL = `http://api.openweathermap.org/geo/1.0/direct`;
 
 export const getGeolocation = createAsyncThunk(
   'geolocation/get',
-  async ({ searchTerm }) => {
+  async (searchTerm) => {
     const res = await axios.get(`${baseURL}?q=${searchTerm}&appid=${apiKey}`);
 
     return res.data;

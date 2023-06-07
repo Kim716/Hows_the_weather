@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { ReactComponent as SearchIcon } from '../assets/iconSearch.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeSearchTerm, getGeolocation } from '../store';
+import { changeSearchTerm, getCurrentWeather, getGeolocation } from '../store';
+import { useEffect } from 'react';
 
 const StyledDiv = styled.div`
   width: 100%;
@@ -52,22 +53,26 @@ const StyledDiv = styled.div`
 `;
 
 function SearchBar() {
-  // const [searchTerm, setSearchTerm] = useState('');
   const dispatch = useDispatch();
-  const { searchTerm } = useSelector((state) => state.weather);
+  const { searchTerm, current } = useSelector((state) => state.weather);
 
   const handleChange = (e) => {
-    // setSearchTerm(e.target.value);
     dispatch(changeSearchTerm(e.target.value));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(getGeolocation({ searchTerm }))
-      .unwrap()
-      .then((locations) => console.log(locations[0].name))
-      .catch((error) => console.error(error));
+    try {
+      const { payload } = await dispatch(getGeolocation(searchTerm));
+      dispatch(getCurrentWeather(payload[0].name));
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+  useEffect(() => {
+    console.log(current);
+  }, [current]);
 
   return (
     <StyledDiv>

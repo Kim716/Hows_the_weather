@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getGeolocation } from '../thunks/getGeolocation';
+import { getCurrentWeather } from '../thunks/getCurrentWeather';
 
 const weatherSlice = createSlice({
   name: 'weather',
@@ -17,6 +18,7 @@ const weatherSlice = createSlice({
     },
   },
   extraReducers(builder) {
+    // GET Geolocation
     builder.addCase(getGeolocation.pending, (state, action) => {
       state.isLoading = true;
     });
@@ -26,6 +28,23 @@ const weatherSlice = createSlice({
       state.searchTerm = '';
     });
     builder.addCase(getGeolocation.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error;
+    });
+
+    // GET Current Weather
+    builder.addCase(getCurrentWeather.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getCurrentWeather.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.current = {
+        description: action.payload.weather[0].description,
+        temp: action.payload.main.temp,
+        humidity: action.payload.main.humidity,
+      };
+    });
+    builder.addCase(getCurrentWeather.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error;
     });
