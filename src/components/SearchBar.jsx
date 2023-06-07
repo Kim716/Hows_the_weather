@@ -54,7 +54,7 @@ const StyledDiv = styled.div`
 
 function SearchBar() {
   const dispatch = useDispatch();
-  const { searchTerm, current } = useSelector((state) => state.weather);
+  const { searchTerm } = useSelector((state) => state.weather);
 
   const handleChange = (e) => {
     dispatch(changeSearchTerm(e.target.value));
@@ -71,8 +71,9 @@ function SearchBar() {
   };
 
   useEffect(() => {
-    console.log(current);
-  }, [current]);
+    // 初次進入 APP 先顯示台北的天氣
+    dispatch(getCurrentWeather('taipei'));
+  }, [dispatch]);
 
   return (
     <StyledDiv>

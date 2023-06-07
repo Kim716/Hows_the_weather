@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
@@ -49,16 +50,20 @@ const StyledDiv = styled.div`
 `;
 
 function TodayPanel() {
+  const { current } = useSelector((state) => state.weather);
+
   return (
     <StyledDiv>
-      <h2>Taipei,TW</h2>
+      <h2>{current.fullName}</h2>
       <div className="info">
-        <div className="weather">Clouds</div>
+        <div className="weather">{current.weather}</div>
         <div className="temp">
-          <p>Temp.</p>32°C
+          <p>Temp.</p>
+          {current.temp}°C
         </div>
         <div className="probability">
-          <p>Humidity</p>30%
+          <p>Humidity</p>
+          {current.humidity}%
         </div>
       </div>
     </StyledDiv>

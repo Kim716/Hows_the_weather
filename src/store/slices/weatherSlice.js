@@ -19,7 +19,7 @@ const weatherSlice = createSlice({
   },
   extraReducers(builder) {
     // GET Geolocation
-    builder.addCase(getGeolocation.pending, (state, action) => {
+    builder.addCase(getGeolocation.pending, (state) => {
       state.isLoading = true;
     });
     builder.addCase(getGeolocation.fulfilled, (state, action) => {
@@ -33,17 +33,17 @@ const weatherSlice = createSlice({
     });
 
     // GET Current Weather
-    builder.addCase(getCurrentWeather.pending, (state, action) => {
+    builder.addCase(getCurrentWeather.pending, (state) => {
       state.isLoading = true;
     });
     builder.addCase(getCurrentWeather.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.current = action.payload;
-      // state.current = {
-      //   description: action.payload.weather[0].description,
-      //   temp: action.payload.main.temp,
-      //   humidity: action.payload.main.humidity,
-      // };
+      state.current = {
+        fullName: `${action.payload.name}, ${action.payload.sys.country}`,
+        weather: action.payload.weather[0].main,
+        temp: Math.round(action.payload.main.temp),
+        humidity: action.payload.main.humidity,
+      };
     });
     builder.addCase(getCurrentWeather.rejected, (state, action) => {
       state.isLoading = false;

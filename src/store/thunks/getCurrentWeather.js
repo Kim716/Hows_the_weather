@@ -9,7 +9,7 @@ export const getCurrentWeather = createAsyncThunk(
   'current/get',
   async (cityName) => {
     const res = await axios.get(
-      `${baseURL}?q=${cityName}&lang=zh_tw&units=metric&appid=${apiKey}`
+      `${baseURL}?q=${cityName}&units=metric&appid=${apiKey}`
     );
 
     return res.data;
