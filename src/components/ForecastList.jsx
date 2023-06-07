@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
@@ -19,13 +20,18 @@ const StyledDiv = styled.div`
 `;
 
 function ForecastList() {
-  const renderedRows = [1, 2, 3, 4, 5].map((el) => {
+  const { forecasts } = useSelector((state) => state.weather);
+
+  const renderedRows = forecasts.map((el) => {
     return (
-      <tr key={el}>
-        <td>3/29</td>
-        <td>Clouds</td>
-        <td>27/32</td>
-        <td>20%</td>
+      <tr key={el.dt}>
+        <td>{el.dt_txt?.split(' ')[0].split('-').slice(-2).join('/')}</td>
+        <td>{el.weather[0].description}</td>
+        <td>
+          {/* 需和團隊討論是否購買付費版，或是調整資訊呈現 */}
+          {Math.round(el.main.temp_max)}/{Math.round(el.main.temp_min)}
+        </td>
+        <td>{el.main.humidity}%</td>
       </tr>
     );
   });
