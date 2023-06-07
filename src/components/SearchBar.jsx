@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ReactComponent as SearchIcon } from '../assets/iconSearch.svg';
+import { ReactComponent as SpinnerIcon } from '../assets/iconSpinner.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   changeSearchTerm,
@@ -48,6 +49,10 @@ const StyledDiv = styled.div`
     &:hover {
       background-color: var(--blue-2);
     }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 
   svg {
@@ -59,7 +64,7 @@ const StyledDiv = styled.div`
 
 function SearchBar() {
   const dispatch = useDispatch();
-  const { searchTerm } = useSelector((state) => state.weather);
+  const { searchTerm, isLoading } = useSelector((state) => state.weather);
 
   const handleChange = (e) => {
     dispatch(changeSearchTerm(e.target.value));
@@ -90,8 +95,8 @@ function SearchBar() {
           onChange={handleChange}
           placeholder="city name,country"
         />
-        <button>
-          <SearchIcon />
+        <button disabled={isLoading}>
+          {isLoading ? <SpinnerIcon /> : <SearchIcon />}
         </button>
       </form>
     </StyledDiv>

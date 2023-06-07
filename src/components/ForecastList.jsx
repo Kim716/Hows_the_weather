@@ -1,3 +1,4 @@
+import { nanoid } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
@@ -20,21 +21,50 @@ const StyledDiv = styled.div`
 `;
 
 function ForecastList() {
-  const { forecasts } = useSelector((state) => state.weather);
+  const { isLoading, error, forecasts } = useSelector((state) => state.weather);
 
-  const renderedRows = forecasts.map((el) => {
-    return (
-      <tr key={el.dt}>
-        <td>{el.dt_txt?.split(' ')[0].split('-').slice(-2).join('/')}</td>
-        <td>{el.weather[0].description}</td>
-        <td>
-          {/* 需和團隊討論是否購買付費版，或是調整資訊呈現 */}
-          {Math.round(el.main.temp_max)}/{Math.round(el.main.temp_min)}
-        </td>
-        <td>{el.main.humidity}%</td>
-      </tr>
-    );
-  });
+  let renderedRows;
+  if (isLoading) {
+    renderedRows = Array(5)
+      .fill(0)
+      .map(() => {
+        return (
+          <tr key={nanoid()}>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+        );
+      });
+  } else if (error) {
+    renderedRows = Array(5)
+      .fill(0)
+      .map(() => {
+        return (
+          <tr key={nanoid()}>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>N/A</td>
+          </tr>
+        );
+      });
+  } else {
+    renderedRows = forecasts.map((el) => {
+      return (
+        <tr key={el.dt}>
+          <td>{el.dt_txt?.split(' ')[0].split('-').slice(-2).join('/')}</td>
+          <td>{el.weather[0].description}</td>
+          <td>
+            {/* 需和團隊討論是否購買付費版，或是調整資訊呈現 */}
+            {Math.round(el.main.temp_max)}/{Math.round(el.main.temp_min)}
+          </td>
+          <td>{el.main.humidity}%</td>
+        </tr>
+      );
+    });
+  }
 
   return (
     <StyledDiv>

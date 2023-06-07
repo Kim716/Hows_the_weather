@@ -22,6 +22,7 @@ const weatherSlice = createSlice({
     // GET Geolocation
     builder.addCase(getGeolocation.pending, (state) => {
       state.isLoading = true;
+      state.error = null;
     });
     builder.addCase(getGeolocation.fulfilled, (state, action) => {
       state.isLoading = false;
@@ -36,6 +37,7 @@ const weatherSlice = createSlice({
     // GET Current Weather
     builder.addCase(getCurrentWeather.pending, (state) => {
       state.isLoading = true;
+      state.error = null;
     });
     builder.addCase(getCurrentWeather.fulfilled, (state, action) => {
       state.isLoading = false;
@@ -54,6 +56,7 @@ const weatherSlice = createSlice({
     // GET Forecasts
     builder.addCase(getForecasts.pending, (state) => {
       state.isLoading = true;
+      state.error = null;
     });
     builder.addCase(getForecasts.fulfilled, (state, action) => {
       state.isLoading = false;
