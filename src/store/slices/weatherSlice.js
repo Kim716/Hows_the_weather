@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getGeolocation } from '../thunks/getGeolocation';
 import { getCurrentWeather } from '../thunks/getCurrentWeather';
 import { getForecasts } from '../thunks/getForecasts';
 
@@ -8,8 +7,6 @@ const weatherSlice = createSlice({
   initialState: {
     isLoading: false,
     error: null,
-    // searchTerm: '',
-    // placeName: null,
     current: {},
     forecasts: [],
   },
@@ -19,21 +16,6 @@ const weatherSlice = createSlice({
     },
   },
   extraReducers(builder) {
-    // GET Geolocation
-    builder.addCase(getGeolocation.pending, (state) => {
-      state.isLoading = true;
-      state.error = null;
-    });
-    builder.addCase(getGeolocation.fulfilled, (state, action) => {
-      state.isLoading = false;
-      // state.placeName = action.payload[0]?.name;
-      // state.searchTerm = '';
-    });
-    builder.addCase(getGeolocation.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.error;
-    });
-
     // GET Current Weather
     builder.addCase(getCurrentWeather.pending, (state) => {
       state.isLoading = true;
@@ -47,7 +29,6 @@ const weatherSlice = createSlice({
         temp: Math.round(action.payload.main.temp),
         humidity: action.payload.main.humidity,
       };
-      // state.searchTerm = '';
     });
     builder.addCase(getCurrentWeather.rejected, (state, action) => {
       state.isLoading = false;
@@ -64,7 +45,6 @@ const weatherSlice = createSlice({
       state.forecasts = action.payload.list.filter((el) =>
         el.dt_txt.includes('06:00:00')
       );
-      // state.searchTerm = '';
     });
     builder.addCase(getForecasts.rejected, (state, action) => {
       state.isLoading = false;

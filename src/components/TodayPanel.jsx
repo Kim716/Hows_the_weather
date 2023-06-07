@@ -29,7 +29,7 @@ const StyledDiv = styled.div`
 
   h2 {
     position: relative;
-    top: -27px;
+    top: -20px;
     left: -3px;
     color: white;
     font-size: 3rem;

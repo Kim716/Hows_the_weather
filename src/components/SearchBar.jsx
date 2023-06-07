@@ -2,13 +2,9 @@ import styled from 'styled-components';
 import { ReactComponent as SearchIcon } from '../assets/iconSearch.svg';
 import { ReactComponent as SpinnerIcon } from '../assets/iconSpinner.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  changeSearchTerm,
-  getCurrentWeather,
-  getForecasts,
-  getGeolocation,
-} from '../store';
+import { getCurrentWeather, getForecasts } from '../store';
 import { useEffect, useState } from 'react';
+import { TextField } from '@mui/material';
 
 const StyledDiv = styled.div`
   width: 100%;
@@ -20,20 +16,7 @@ const StyledDiv = styled.div`
     align-items: center;
   }
 
-  input {
-    margin-right: 10px;
-    padding: 5px;
-    border: 1px solid lightgray;
-    border-radius: 5px;
-    color: #111111;
-
-    &:focus {
-      outline: 1px solid var(--blue-1);
-      outline-offset: -3px;
-    }
-  }
-
-  button {
+  .search-btn {
     aspect-ratio: 1/1;
     height: 100%;
     background-color: var(--blue-1);
@@ -64,12 +47,10 @@ const StyledDiv = styled.div`
 
 function SearchBar() {
   const dispatch = useDispatch();
-  // const { searchTerm, isLoading } = useSelector((state) => state.weather);
   const { isLoading } = useSelector((state) => state.weather);
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleChange = (e) => {
-    // dispatch(changeSearchTerm(e.target.value));
     setSearchTerm(e.target.value);
   };
 
@@ -81,8 +62,8 @@ function SearchBar() {
     setSearchTerm('');
   };
 
+  // 初次進入 APP 先顯示台北的天氣
   useEffect(() => {
-    // 初次進入 APP 先顯示台北的天氣
     dispatch(getCurrentWeather('taipei'));
     dispatch(getForecasts('taipei'));
   }, [dispatch]);
@@ -90,12 +71,15 @@ function SearchBar() {
   return (
     <StyledDiv>
       <form onSubmit={handleSubmit}>
-        <input
+        <TextField
+          sx={{ marginRight: '10px', width: '250px' }}
+          id="outlined-basic"
+          label="city name, country"
+          variant="outlined"
           value={searchTerm}
           onChange={handleChange}
-          placeholder="city name,country"
         />
-        <button disabled={isLoading}>
+        <button className="search-btn" disabled={isLoading}>
           {isLoading ? <SpinnerIcon /> : <SearchIcon />}
         </button>
       </form>
