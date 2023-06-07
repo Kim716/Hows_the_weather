@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const apiKey = '81143149998081119abda998ef1c95c7';
+const apiKey = import.meta.env.VITE_API_KEY;
 
-const baseURL = 'https://api.openweathermap.org/data/2.5/forecast';
+const baseURL = `${import.meta.env.VITE_API_DOMAIN}forecast`;
 
 export const getForecasts = createAsyncThunk(
   'forecasts/get',
