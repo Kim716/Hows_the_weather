@@ -1,6 +1,6 @@
 # 🌤 Hows_the_weather
 
-A weather application that you can check the current weather and the five-day weather forecast for a specific city.
+A weather application that you can check **the current weather** and **the five-day weather forecast** for a specific city.
 
 🕹 [Demo](https://kim716.github.io/Hows_the_weather/)
 
