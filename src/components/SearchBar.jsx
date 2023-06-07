@@ -57,9 +57,12 @@ function SearchBar() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(getCurrentWeather(searchTerm));
+    dispatch(getCurrentWeather(searchTerm))
+      .unwrap()
+      .then(() => {
+        setSearchTerm('');
+      });
     dispatch(getForecasts(searchTerm));
-    setSearchTerm('');
   };
 
   // 初次進入 APP 先顯示台北的天氣
@@ -78,6 +81,7 @@ function SearchBar() {
           variant="outlined"
           value={searchTerm}
           onChange={handleChange}
+          disabled={isLoading}
         />
         <button className="search-btn" disabled={isLoading}>
           {isLoading ? <SpinnerIcon /> : <SearchIcon />}
